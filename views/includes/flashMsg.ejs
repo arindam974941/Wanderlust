@@ -1,0 +1,33 @@
+<% if(successMsg && successMsg.length){ %>
+    <div class="alert alert-success alert-dismissible fade show col-6 offset-3 mt-2 alertFlash" role="alert">
+        <%= successMsg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if(errorMsg && errorMsg.length){ %>
+    <div class="alert alert-danger alert-dismissible fade show col-6 offset-3 mt-2 alertFlash" role="alert">
+        <%= errorMsg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<style>
+    .alertFlash.fade-out {
+        opacity: 0;
+        transition: opacity 0.7s ease-out;
+    }
+</style>
+
+<script>
+    // Automatically close alerts after 1.5 seconds (1500 milliseconds) with transition
+    setTimeout(function() {
+        var alerts = document.querySelectorAll('.alertFlash');
+        alerts.forEach(function(alert) {
+            alert.classList.add('fade-out');
+    
+                var bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+        });
+    }, 1500);
+</script>

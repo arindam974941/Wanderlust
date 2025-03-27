@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="/listings"><i class="fa-solid fa-compass"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav me-auto">
+            <a class="nav-link <%= currentPath === '/listings' ? 'active-link' : '' %>" href="/listings">All Listings</a>
+              <a class="nav-link <%= currentPath === '/listings/new' ? 'active-link' : '' %>" href="/listings/new">Add New Listing</a>
+          </div>
+          
+            <form class="form-inline" action="/listings/search" method="post">
+                <div class="search_div">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </div>
+              </form>
+         
+          <div class="navbar-nav ms-auto">
+            <% if(!currentUser){ %>
+              <a class="btn btn-outline-primary me-2" href="/signup">Signup</a>
+              <a class="btn btn-outline-secondary me-2" href="/login">Login</a>
+              <% } %>
+              <% if(currentUser){ %>
+              <a class="btn btn-outline-danger" href="/logout">Logout</a>
+              <% } %>
+          </div>
+      </div>
+  </div>
+</nav>
