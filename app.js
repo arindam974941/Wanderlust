@@ -91,7 +91,7 @@ passport.deserializeUser(User.deserializeUser()); // This tells passport how to 
 app.use( (req,res,next) => {
     res.locals.successMsg = req.flash("success");
     res.locals.errorMsg = req.flash("error");
-    res.locals.currentUser = req.user;
+    res.locals.currentUser = req.user ;
       next();
   });
 
