@@ -41,14 +41,48 @@ body{
 .search_div{
     display: flex !important;
     flex-direction: row !important;
+    align-items: center !important;
 }
 .search_div input{
     margin-right: 10px;
-    border-radius:18rem;
 }
-.search_div button{
-     border-radius:18rem;
+
+
+@media (min-width: 300px) and (max-width: 650px){ 
+    .search_div input{
+        margin-left: 6px;
+        height: 2rem;
+        width: 70%;
+    }
+    .search_div button {
+        height: 2rem;
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+    }
+    #navbarNavAltMarkup > div.navbar-nav.me-auto{
+        margin-left: 8px;
+    }
+
+    #navbarNavAltMarkup > div.navbar-nav.ms-auto > a{
+        margin-left: 8px;
+        height: 2rem;
+        font-size: 0.9rem;
+    }
+ }
+
+body > nav > div > button.navbar-toggler {
+    border: none !important;
+    background-color: transparent !important;
+    outline: none !important;
 }
+
+body > nav > div > button.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
 
 .nav-link {
     color: #495057 !important; /* Dark gray for better readability */
