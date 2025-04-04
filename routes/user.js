@@ -19,15 +19,35 @@ router.get("/login", usersController.renderLogin);
 
 // post request for login
 router.post("/login",
-    saveReturnTo,   // This is a middleware that saves the URL the user is trying to access before being redirected to the login page. 
+    saveReturnTo,   
     passport.authenticate('local', {
         failureFlash: true,
          failureRedirect: "/login"
-        }), // This is the middleware that authenticates the user using the local strategy we defined. If the authentication fails, the user is redirected to the login page. 
+        }), 
      usersController.login 
     );
+
+// Route to initiate Google signup/login
+router.get('/auth/google/signup',
+    passport.authenticate('google', { scope: ['profile', 'email'] })
+  );
+  
+router.get('/auth/google/login',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+
+router.get('/auth/google/callback',
+  saveReturnTo,  
+  passport.authenticate('google', {
+    failureFlash: true,
+    failureRedirect: '/login'
+  }),
+  usersController.login // Controller to handle user login after successful authentication
+);
+
 
 // get request for logout 
 router.get("/logout", usersController.logout);
 
-module.exports = router; // This exports the router object so that it can be used in other files.
+module.exports = router;

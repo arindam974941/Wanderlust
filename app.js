@@ -21,6 +21,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
 const dbUrl = process.env.ATLASDB_URL;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
 app.set("view engine", "ejs");
@@ -95,6 +96,29 @@ app.use( (req,res,next) => {
       next();
   });
 
+ 
+ passport.use(new GoogleStrategy({
+     clientID: process.env.GOOGLE_CLIENT_ID,
+     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+     callbackURL: "http://localhost:8080/auth/google/callback"
+   },
+   async (accessToken, refreshToken, profile, done) => {
+     try {
+       let user = await User.findOne({ googleId: profile.id });
+       if (!user) {
+         user = new User({
+           googleId: profile.id,
+           username: profile.displayName,
+           email: profile.emails[0].value
+         });
+         await user.save();
+       }
+       return done(null, user);
+     } catch (err) {
+       return done(err, null);
+     }
+   }
+ ));
 
 app.use("/listings", listingRouter); // This tells Express to use the listingRouter for any routes that start with /listings.
 app.use("/listings/:id/reviews", reviewRouter);// This tells Express to use the reviewRouter for any routes that start with /listings/:id/reviews.

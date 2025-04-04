@@ -9,6 +9,11 @@ const passportLocalMongoose = require('passport-local-mongoose'); // require pas
         type: String,
         required: true,
         unique: true
+    },
+    googleId: {
+        type: String, // To store the Google profile ID
+        unique: true,
+        sparse: true // Allows null values for users who don't use Google
     }
  });
 
