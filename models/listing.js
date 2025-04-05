@@ -33,7 +33,20 @@ const listingSchema = new Schema({
     country: {
         type: String,
     },
-
+    
+    booked: { // New field to track booking status
+        type: Boolean,
+        default: false
+    },
+    bookedBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        default: null
+    },
+    bookedAt: { // New field to store the booking timestamp
+        type: Date,
+        default: null
+    },
     reviews: [
         {
             type: Schema.Types.ObjectId,

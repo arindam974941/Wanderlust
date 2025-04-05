@@ -173,6 +173,26 @@ body > nav > div > button.navbar-toggler:focus {
     background-color: white;
 }
 
+
+.listing-card.booked {
+    border: 2px solid red;
+    opacity: 0.7;
+    position: relative;
+}
+
+.listing-card.booked::after {
+    content: "Booked";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
 /* show page styling */
 
 
@@ -200,5 +220,33 @@ body > nav > div > button.navbar-toggler:focus {
     border: none !important;
 }
 
-/* map styling */
+/* login and sigiup page styling */
 
+/* Google Button Styling */
+.google-btn-auth {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fffffff1; /* Light gray background */
+    color: #444; /* Dark gray text */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.google-btn-auth img.google-icon {
+    width: 20px; /* Adjust the size of the icon */
+    height: 20px;
+    margin-right: 10px; /* Space between the icon and text */
+}
+
+.google-btn-auth:hover {
+    background-color: #e0e0e0; /* Slightly darker gray on hover */
+    color: #000; /* Darker text on hover */
+    text-decoration: none;
+    border-color: #ccc; /* Darker border on hover */
+}

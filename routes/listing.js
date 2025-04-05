@@ -47,5 +47,10 @@ router.post('/search',
     listingController.searchListings
 );
 
+// booking route
+router.post("/:id/book", isLoggedIn, wrapAsync(listingController.bookListing));   // This route is used to book a listing. The listing is retrieved from the database using the id provided in the URL.
+
+// cancel booking route
+router.post("/:id/cancel", isLoggedIn, wrapAsync(listingController.cancelBooking));
 
 module.exports = router;
