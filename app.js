@@ -23,6 +23,14 @@ const User = require('./models/user.js');
 const dbUrl = process.env.ATLASDB_URL;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", 
+    "default-src 'self'; font-src 'self' https://wanderlust-om9s.onrender.com; style-src 'self' 'unsafe-inline'; script-src 'self';"
+  );
+  next();
+});
+
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
