@@ -10,48 +10,48 @@ if(process.env.NODE_ENV !== "production") {
 const  express = require("express");
 const app = express();
 
-const helmet = require("helmet");
+// const helmet = require("helmet");
 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: [
-        "'self'",
-        "https://cdn.jsdelivr.net",
-        "https://cdnjs.cloudflare.com"
-      ],
-      styleSrc: [
-        "'self'",
-        "'unsafe-inline'",
-        "https://cdn.jsdelivr.net",
-        "https://cdnjs.cloudflare.com",
-        "https://fonts.googleapis.com"
-      ],
-      fontSrc: [
-        "'self'",
-        "https://fonts.gstatic.com",
-        "https://cdnjs.cloudflare.com"
-      ],
-      imgSrc: [
-        "'self'",
-        "data:",
-        "https://res.cloudinary.com"
-      ],
-      connectSrc: ["'self'"],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  })
-);
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'"],
+//       scriptSrc: [
+//         "'self'",
+//         "https://cdn.jsdelivr.net",
+//         "https://cdnjs.cloudflare.com"
+//       ],
+//       styleSrc: [
+//         "'self'",
+//         "'unsafe-inline'",
+//         "https://cdn.jsdelivr.net",
+//         "https://cdnjs.cloudflare.com",
+//         "https://fonts.googleapis.com"
+//       ],
+//       fontSrc: [
+//         "'self'",
+//         "https://fonts.gstatic.com",
+//         "https://cdnjs.cloudflare.com"
+//       ],
+//       imgSrc: [
+//         "'self'",
+//         "data:",
+//         "https://res.cloudinary.com"
+//       ],
+//       connectSrc: ["'self'"],
+//       objectSrc: ["'none'"],
+//       upgradeInsecureRequests: [],
+//     },
+//   })
+// );
 
-app.use((req, res, next) => {
-  res.setHeader(
-    "Content-Security-Policy",
-    "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://res.cloudinary.com; object-src 'none';"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader(
+//     "Content-Security-Policy",
+//     "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://res.cloudinary.com; object-src 'none';"
+//   );
+//   next();
+// });
 
 
 const port = 8080;
