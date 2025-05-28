@@ -6,55 +6,23 @@ if(process.env.NODE_ENV !== "production") {
 const  express = require("express");
 const app = express();
 
-// const helmet = require("helmet");
 
-// app.use(
-//   helmet.contentSecurityPolicy({
-//     directives: {
-//       defaultSrc: ["'self'"],
-//       scriptSrc: [
-//         "'self'",
-//         "https://cdn.jsdelivr.net",
-//         "https://cdnjs.cloudflare.com"
-//       ],
-//       styleSrc: [
-//         "'self'",
-//         "'unsafe-inline'",
-//         "https://cdn.jsdelivr.net",
-//         "https://cdnjs.cloudflare.com",
-//         "https://fonts.googleapis.com"
-//       ],
-//       fontSrc: [
-//         "'self'",
-//         "https://fonts.gstatic.com",
-//         "https://cdnjs.cloudflare.com"
-//       ],
-//       imgSrc: [
-//         "'self'",
-//         "data:",
-//         "https://res.cloudinary.com"
-//       ],
-//       connectSrc: ["'self'"],
-//       objectSrc: ["'none'"],
-//       upgradeInsecureRequests: [],
-//     },
-//   })
-// );
-
-// app.use((req, res, next) => {
-//   res.setHeader("Content-Security-Policy",
-//     "default-src 'self'; " +
-//     "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; " +
-//     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; " +
-//     "img-src 'self' data: https://res.cloudinary.com; " +
-//     "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; " +
-//     "connect-src 'self'; " +
-//     "object-src 'none';"
-//   );
-//   next();
-// });
-
-
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    [
+      "default-src 'self';",
+      "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com;",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com;",
+      "img-src 'self' data: https://res.cloudinary.com;",
+      "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;",
+      "connect-src 'self';",
+      "object-src 'none';"
+    ].join(" ")
+  );
+  next();
+});
+// ...existing code...
 
 const port = 8080;
 const path = require("path");
@@ -75,12 +43,12 @@ const User = require('./models/user.js');
 const dbUrl = process.env.ATLASDB_URL;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", 
-    "default-src 'self'; font-src 'self' https://wanderlust-glhc.onrender.com/; style-src 'self' 'unsafe-inline'; script-src 'self';"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Content-Security-Policy", 
+//     "default-src 'self'; font-src 'self' https://wanderlust-glhc.onrender.com/; style-src 'self' 'unsafe-inline'; script-src 'self';"
+//   );
+//   next();
+// });
 
 
 
